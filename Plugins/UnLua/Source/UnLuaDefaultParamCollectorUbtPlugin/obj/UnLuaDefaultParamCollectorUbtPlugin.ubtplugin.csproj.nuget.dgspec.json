@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WorkSpace\\aurarpg\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj": {}
+    "D:\\WorkSpace\\AuraRPG\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj": {}
   },
   "projects": {
-    "D:\\WorkSpace\\aurarpg\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj": {
+    "D:\\WorkSpace\\AuraRPG\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WorkSpace\\aurarpg\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj",
+        "projectUniqueName": "D:\\WorkSpace\\AuraRPG\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj",
         "projectName": "UnLuaDefaultParamCollectorUbtPlugin",
-        "projectPath": "D:\\WorkSpace\\aurarpg\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj",
+        "projectPath": "D:\\WorkSpace\\AuraRPG\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj",
         "packagesPath": "C:\\Users\\aka_w\\.nuget\\packages\\",
-        "outputPath": "D:\\WorkSpace\\aurarpg\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\obj\\",
+        "outputPath": "D:\\WorkSpace\\AuraRPG\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\aka_w\\AppData\\Roaming\\NuGet\\NuGet.Config",
