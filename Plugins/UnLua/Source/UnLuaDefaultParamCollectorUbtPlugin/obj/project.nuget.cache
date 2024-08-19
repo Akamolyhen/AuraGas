@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8MqIS4Dlu+reK0xQNEH2q0AnsEminxrNfxTYpZar2tGW5Nh1Mu7ByU1N6X6bo4n1AAKw9Htq9Yl93semDnBaIA==",
+  "success": true,
+  "projectFilePath": "D:\\WorkSpace\\aurarpg\\Plugins\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\aka_w\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

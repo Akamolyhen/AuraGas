@@ -1,0 +1,8 @@
+**/Intermediate
+/Saved
+**/Binaries
+/.idea
+/.vs
+.vsconfig
+/Build/Windows/FileOpenOrder/CookerOpenOrder.log
+/Build/Windows/FileOpenOrder/EditorOpenOrder.log
