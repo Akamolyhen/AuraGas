@@ -32,13 +32,13 @@ void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, 
 
 	if(Attribute == GetHealthAttribute())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("PreAttributeChange::PreHealth from GetHealth():  %f"),NewValue);
 		NewValue = FMath::Clamp(NewValue,0.f,GetMaxHealth());
-		UE_LOG(LogTemp, Warning, TEXT("PreAttributeChange::Health from GetHealth():  %f"),NewValue);
+		Health.SetBaseValue(NewValue);
 	}
 	if(Attribute == GetManaAttribute())
 	{
 		NewValue = FMath::Clamp(NewValue,0.f,GetMaxMana());
+		Mana.SetBaseValue(NewValue);
 	}
 }
 
