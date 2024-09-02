@@ -23,8 +23,9 @@ local M = UnLua.Class()
 
 function M:WidgetControllerSet()
     ---@type BP_OverlayWidgetController_C
-    self.WidgetController.OnManaChanged:Add(self,self.OnManaChanged)
-    self.WidgetController.OnMaxManaChanged:Add(self,self.OnMaxManaChanged)
+    local WidgetController = self.WidgetController
+    WidgetController.OnManaChanged:Add(self,self.OnManaChanged)
+    WidgetController.OnMaxManaChanged:Add(self,self.OnMaxManaChanged)
 end
 
 function M:OnManaChanged(newMana)
