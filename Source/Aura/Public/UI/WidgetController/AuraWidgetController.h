@@ -14,7 +14,7 @@ struct FWidgetControllerParams
 {
 	GENERATED_BODY()
 
-	FWidgetControllerParams() {};
+	FWidgetControllerParams() {}
 	FWidgetControllerParams(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* Asc, UAttributeSet* As) :
 		PlayerController(PC), PlayerState(PS), AbilitySystemComponent(Asc), AttributeSet(As)
 	{

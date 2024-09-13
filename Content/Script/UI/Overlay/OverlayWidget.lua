@@ -27,6 +27,7 @@ function M:WidgetControllerSet()
     WidgetController.MessageWidgetRowDelegate:Add(self,self.OnGetMessageWidgetRow)
     self.WBP_HealthGlobe:SetWidgetController(self.WidgetController)
     self.WBP_ManaGlobe:SetWidgetController(self.WidgetController)
+    self.Btn_AttributeMenu.Button.OnClicked:Add(self,self.OnAttributeBtnClicked)
 end
 
 ---@param Row FUIWidgetRow
@@ -38,6 +39,11 @@ function M:OnGetMessageWidgetRow(Row)
     local Position = UE.FVector2D(ViewportSize.X*0.1,ViewportSize.Y*0.6)
     EffectMessageWidget:SetPositionInViewport(Position,true)
     EffectMessageWidget:AddToViewport()
+end
+
+function M:OnAttributeBtnClicked()
+    local AttributeMenu = UE.UWidgetBlueprintLibrary.Create(self, UE.UClass.Load("/Game/Blueprints/UI/AttributeMenu/WBP_AttributesMenu.WBP_AttributesMenu_C"))
+    AttributeMenu:AddToViewport()
 end
 
 return M

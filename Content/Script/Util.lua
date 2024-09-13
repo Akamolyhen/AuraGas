@@ -34,4 +34,8 @@ function Util:PT(t,str)
     print()
 end
 
+function Util:ScreenPrint(text)
+    UE.UKismetSystemLibrary.PrintString(this, text)
+end
+
 return Util
