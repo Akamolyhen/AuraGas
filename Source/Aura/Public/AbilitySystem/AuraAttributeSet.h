@@ -78,7 +78,7 @@ public:
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Resilience);
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Vigor, Category = "Primary Attribute")
-	FGameplayAttributeData Vigor;//Increase Health
+	FGameplayAttributeData Vigor;//Increase Health and Health Penetration
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Vigor);
 
 	/*

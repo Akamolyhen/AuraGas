@@ -36,14 +36,24 @@ function M:OnGetMessageWidgetRow(Row)
     local EffectMessageWidget = UE.UWidgetBlueprintLibrary.Create(self,Row.MessageWidget)
     EffectMessageWidget:SetImgAndText(Row.Image,Row.Message)
     local ViewportSize = UE.UWidgetLayoutLibrary.GetViewportSize(self)
-    local Position = UE.FVector2D(ViewportSize.X*0.1,ViewportSize.Y*0.6)
+    local Position = UE.FVector2D(ViewportSize.X*0.1,ViewportSize.Y*0.8)
     EffectMessageWidget:SetPositionInViewport(Position,true)
     EffectMessageWidget:AddToViewport()
 end
 
 function M:OnAttributeBtnClicked()
+    self.Btn_AttributeMenu.Button:SetIsEnabled(false)
+    ---@type WBP_AttributesMenu_C
     local AttributeMenu = UE.UWidgetBlueprintLibrary.Create(self, UE.UClass.Load("/Game/Blueprints/UI/AttributeMenu/WBP_AttributesMenu.WBP_AttributesMenu_C"))
+    local playerController = UE.UGameplayStatics.GetPlayerController(self,0)
+    UE.UWidgetBlueprintLibrary.SetInputMode_UIOnlyEx(playerController,nil,UE.EMouseLockMode.DoNotLock,false)
     AttributeMenu:AddToViewport()
+    AttributeMenu:SetPositionInViewport(UE.FVector2D(50,50),true)
+    AttributeMenu.OnAttributeMenuClosed:Add(self,self.ReEnableAttributeBtn)
+end
+
+function M:ReEnableAttributeBtn()
+    self.Btn_AttributeMenu.Button:SetIsEnabled(true) 
 end
 
 return M
