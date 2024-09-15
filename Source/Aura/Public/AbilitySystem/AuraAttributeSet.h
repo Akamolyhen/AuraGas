@@ -15,6 +15,9 @@
 	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
+//typdef is specific to the FGameplayAttribute() signature, but TStaticFunPtr is generic to any signature choosen
+template<class T>
+using TStaticFuncPtr = typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr;
 
 USTRUCT(BlueprintType)
 struct FEffectProperties
@@ -61,7 +64,13 @@ public:
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
+	
+	// TBaseStaticDelegateInstance<FGameplayAttribute(), FDefaultDelegateUserPolicy>::FFuncPtr 
+	TMap<FGameplayTag, TStaticFuncPtr<FGameplayAttribute()>> TagsToAttributes;
 
+	// TStaticFuncPtr<float(int32, float, int32)> RandomFunctionPointer;
+	//
+	// static float RandomFunction(int32 I, float F, int32 I2) { return 0.f;}
 	/*
 	 * Primary Attributes
 	*/

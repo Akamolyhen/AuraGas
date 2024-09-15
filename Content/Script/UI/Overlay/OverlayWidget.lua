@@ -48,7 +48,7 @@ function M:OnAttributeBtnClicked()
     local playerController = UE.UGameplayStatics.GetPlayerController(self,0)
     UE.UWidgetBlueprintLibrary.SetInputMode_UIOnlyEx(playerController,nil,UE.EMouseLockMode.DoNotLock,false)
     AttributeMenu:AddToViewport()
-    AttributeMenu:SetPositionInViewport(UE.FVector2D(50,50),true)
+    AttributeMenu:SetPositionInViewport(UE.FVector2D(50,25),true)
     AttributeMenu.OnAttributeMenuClosed:Add(self,self.ReEnableAttributeBtn)
 end
 

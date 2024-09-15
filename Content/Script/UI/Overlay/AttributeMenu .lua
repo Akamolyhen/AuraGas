@@ -40,3 +40,4 @@ function M:WidgetControllerSet()
 end
 
 return M
+

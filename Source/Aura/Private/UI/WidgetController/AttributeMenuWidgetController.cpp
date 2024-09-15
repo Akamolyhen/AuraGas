@@ -9,11 +9,15 @@
 
 void UAttributeMenuWidgetController::BroadcastInitialValues()
 {
-	UAuraAttributeSet* As = CastChecked<UAuraAttributeSet>(AttributeSet);
+	const UAuraAttributeSet* As = CastChecked<UAuraAttributeSet>(AttributeSet);
 	check(AttributeInfo);
-	FAuraAttributeInfo Info = AttributeInfo->FindAttributeForTag(FAuraGameplayTags::Get().Attribute_Primary_Strength);
-	Info.AttributeValue = As->GetStrength();
-	AttributeInfoDelegate.Broadcast(Info);
+
+	for (auto& Pair : As->TagsToAttributes)
+	{
+		FAuraAttributeInfo Info = AttributeInfo->FindAttributeForTag(Pair.Key);
+		Info.AttributeValue = Pair.Value().GetNumericValue(As);
+		AttributeInfoDelegate.Broadcast(Info);
+	}
 }
 
 void UAttributeMenuWidgetController::BindCallbacksToDependencies()
