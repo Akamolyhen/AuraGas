@@ -11,7 +11,6 @@
 #include "NavigationSystem.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Components/SplineComponent.h"
-#include "HLSLTree/HLSLTreeEmit.h"
 #include "Input/AuraInputComponent.h"
 #include "Interaction/EnemyInterface.h"
 
@@ -39,7 +38,7 @@ void AAuraPlayerController::AutoRun()
 		const FVector Direction = Spline->FindDirectionClosestToWorldLocation(LocationOnSpline, ESplineCoordinateSpace::World);
 		ControlledPawn->AddMovementInput(Direction);
 		const float DistanceToDestination = (LocationOnSpline - CacheDestination).Length(); 
-		// GEngine->AddOnScreenDebugMessage(1,3.f,FColor::White,FString::Printf(TEXT("DistanceToDestination:%f"),DistanceToDestination));
+		GEngine->AddOnScreenDebugMessage(1,3.f,FColor::White,FString::Printf(TEXT("DistanceToDestination:%f"),DistanceToDestination));
 		if (DistanceToDestination <= AutoRunAcceptanceRadius)
 		{
 			bAutoRunning = false;
