@@ -12,6 +12,7 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 class IEnemyInterface;
+class USplineComponent;
 
 /**
  * 
@@ -24,9 +25,6 @@ public:
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
 
-	UPROPERTY(BlueprintReadOnly)
-	bool B_Forward = false;	
-	// UFUNCTION(BlueprintCallable) bool GetForward() const { return B_Forward; }
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
@@ -34,9 +32,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> AuraContext;
 
-	UPROPERTY(EditAnywhere, Category = "Input")	
-	TObjectPtr<UInputAction> MoveAction;
-	void Move(const FInputActionValue& InputActionValue);
+	// UPROPERTY(EditAnywhere, Category = "Input")	
+	// TObjectPtr<UInputAction> MoveAction;
+	// void Move(const FInputActionValue& InputActionValue);
 
 	UPROPERTY(EditAnywhere, Category = "Input")	
 	TObjectPtr<UInputAction> LookAction;
@@ -45,6 +43,7 @@ private:
 	void CursorTrace();
 	TScriptInterface<IEnemyInterface> LastActor;
 	TScriptInterface<IEnemyInterface> ThisActor;
+	FHitResult CursorHit;
 
 
 	void AbilityInputPressed(FGameplayTag InputTag);
@@ -56,4 +55,17 @@ private:
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
 
 	UAuraAbilitySystemComponent* GetAsc();
+
+	FVector CacheDestination = FVector::ZeroVector;
+	float FollowTime = 0.f;
+	float ShortPressThreshold = 0.25f;
+	bool bAutoRunning = false;
+	bool bTargeting = false;
+
+	UPROPERTY(EditDefaultsOnly)
+	float AutoRunAcceptanceRadius = 0.5f;
+
+	TObjectPtr<USplineComponent> Spline;
+	void AutoRun();
+	
 };

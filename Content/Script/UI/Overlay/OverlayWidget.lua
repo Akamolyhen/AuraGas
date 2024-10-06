@@ -42,14 +42,17 @@ function M:OnGetMessageWidgetRow(Row)
 end
 
 function M:OnAttributeBtnClicked()
-    self.Btn_AttributeMenu.Button:SetIsEnabled(false)
-    ---@type WBP_AttributesMenu_C
-    local AttributeMenu = UE.UWidgetBlueprintLibrary.Create(self, UE.UClass.Load("/Game/Blueprints/UI/AttributeMenu/WBP_AttributesMenu.WBP_AttributesMenu_C"))
-    local playerController = UE.UGameplayStatics.GetPlayerController(self,0)
-    UE.UWidgetBlueprintLibrary.SetInputMode_UIOnlyEx(playerController,nil,UE.EMouseLockMode.DoNotLock,false)
-    AttributeMenu:AddToViewport()
-    AttributeMenu:SetPositionInViewport(UE.FVector2D(50,25),true)
-    AttributeMenu.OnAttributeMenuClosed:Add(self,self.ReEnableAttributeBtn)
+     self.Btn_AttributeMenu.Button:SetIsEnabled(false)
+     ---@type WBP_AttributesMenu_C
+     local AttributeMenu = UE.UWidgetBlueprintLibrary.Create(self, UE.UClass.Load("/Game/Blueprints/UI/AttributeMenu/WBP_AttributesMenu.WBP_AttributesMenu_C"))
+     local playerController = UE.UGameplayStatics.GetPlayerController(self,0)
+     UE.UWidgetBlueprintLibrary.SetInputMode_UIOnlyEx(playerController,nil,UE.EMouseLockMode.DoNotLock,false)
+     AttributeMenu:AddToViewport()
+     AttributeMenu:SetPositionInViewport(UE.FVector2D(50,25),true)
+     AttributeMenu.OnAttributeMenuClosed:Add(self,self.ReEnableAttributeBtn)
+    -----@type TestUI_C
+    --local TestUI = UE.UWidgetBlueprintLibrary.Create(self, UE.UClass.Load("/Game/Blueprints/UI/Overlay/TestUI/TestUI.TestUI_C"))
+    --TestUI:AddToViewport()
 end
 
 function M:ReEnableAttributeBtn()
