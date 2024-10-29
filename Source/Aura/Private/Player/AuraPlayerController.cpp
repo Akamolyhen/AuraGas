@@ -178,26 +178,26 @@ void AAuraPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 
 	UAuraInputComponent* AuraInputComponent = CastChecked<UAuraInputComponent>(InputComponent);
-	// AuraInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+	AuraInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 	AuraInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Look);
 	AuraInputComponent->BindAbilityAction(InputConfig, this, &ThisClass::AbilityInputPressed,&ThisClass::AbilityInputReleased,&ThisClass::AbilityInputHeld);
 
 }
 
-// void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
-// {
-// 	const FVector2D InputAxisVector =InputActionValue.Get<FVector2D>();
-// 	const FRotator Rotation = GetControlRotation();
-// 	const FRotator YawRotation(0.f,Rotation.Yaw,0.f);
-//
-// 	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Type::X);
-// 	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Type::Y);
-// 	if (APawn* ControlledPawn = GetPawn<APawn>())
-// 	{
-// 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
-// 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
-// 	}
-// }
+void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
+{
+	const FVector2D InputAxisVector =InputActionValue.Get<FVector2D>();
+	const FRotator Rotation = GetControlRotation();
+	const FRotator YawRotation(0.f,Rotation.Yaw,0.f);
+
+	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Type::X);
+	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Type::Y);
+	if (APawn* ControlledPawn = GetPawn<APawn>())
+	{
+		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
+		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
+	}
+}
 
 void AAuraPlayerController::Look(const FInputActionValue& InputActionValue)
 {
