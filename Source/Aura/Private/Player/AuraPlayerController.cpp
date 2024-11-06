@@ -37,9 +37,7 @@ void AAuraPlayerController::AutoRun()
 		const FVector LocationOnSpline = Spline->FindLocationClosestToWorldLocation(ControlledPawn->GetActorLocation(), ESplineCoordinateSpace::World);
 		const FVector Direction = Spline->FindDirectionClosestToWorldLocation(LocationOnSpline, ESplineCoordinateSpace::World);
 		ControlledPawn->AddMovementInput(Direction);
-		const float DistanceToDestination = (LocationOnSpline - CacheDestination).Length(); 
-		GEngine->AddOnScreenDebugMessage(1,3.f,FColor::White,FString::Printf(TEXT("DistanceToDestination:%f"),DistanceToDestination));
-		if (DistanceToDestination <= AutoRunAcceptanceRadius)
+		if (const float DistanceToDestination = (LocationOnSpline - CacheDestination).Length(); DistanceToDestination <= AutoRunAcceptanceRadius)
 		{
 			bAutoRunning = false;
 		}
@@ -194,6 +192,7 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Type::Y);
 	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{
+		bAutoRunning = false;
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 	}
