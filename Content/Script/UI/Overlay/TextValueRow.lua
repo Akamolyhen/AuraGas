@@ -25,7 +25,7 @@ end
 function M:OnAttributeInfoBroad(Info)
     if self.AttributeTag and UE.UBlueprintGameplayTagLibrary.MatchesTag(Info.AttributeTag,self.AttributeTag,true) then
         self.LabelName = Info.AttributeName
-        self.FramedValue.AttributeVal = string.format("%.1f", Info.AttributeValue)
+        self.FramedValue.AttributeVal = math.floor(Info.AttributeValue + 0.5)
     end
 end
 
