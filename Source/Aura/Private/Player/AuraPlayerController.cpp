@@ -88,15 +88,12 @@ void AAuraPlayerController::AbilityInputReleased(FGameplayTag InputTag)
 {
 	if (!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
 	{
-		if (GetAsc()) GetAsc()->AbilityInputTagHeld(InputTag);	
+		if (GetAsc()) GetAsc()->AbilityInputTagRelease(InputTag);	
 		return;
 	}
-
-	if (bTargeting)
-	{
-		if (GetAsc()) GetAsc()->AbilityInputTagHeld(InputTag);	
-	}
-	else
+	if (GetAsc()) GetAsc()->AbilityInputTagRelease(InputTag);
+	
+	if (!bTargeting && !bShiftKeyDown)
 	{
 		if (const APawn* ControlledPawn = GetPawn(); FollowTime <= ShortPressThreshold && ControlledPawn)
 		{
@@ -107,12 +104,13 @@ void AAuraPlayerController::AbilityInputReleased(FGameplayTag InputTag)
 				{
 					Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
 				}
+				CacheDestination = NavPath->PathPoints[NavPath->PathPoints.Num() - 1];
+				bAutoRunning = true;
 			}
-			bAutoRunning = true;
 		}
+		FollowTime = 0.f;
+		bTargeting = false;
 	}
-	FollowTime = 0.f;
-	bTargeting = false;
 }
 
 void AAuraPlayerController::AbilityInputHeld(FGameplayTag InputTag)
@@ -122,8 +120,7 @@ void AAuraPlayerController::AbilityInputHeld(FGameplayTag InputTag)
 		if (GetAsc()) GetAsc()->AbilityInputTagHeld(InputTag);
 		return;
 	}
-
-	if (bTargeting)
+	if (bTargeting || bShiftKeyDown)
 	{
 		if (GetAsc()) GetAsc()->AbilityInputTagHeld(InputTag);
 	}
@@ -178,6 +175,8 @@ void AAuraPlayerController::SetupInputComponent()
 	UAuraInputComponent* AuraInputComponent = CastChecked<UAuraInputComponent>(InputComponent);
 	AuraInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 	AuraInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Look);
+	AuraInputComponent->BindAction(ShiftAction, ETriggerEvent::Started, this, &AAuraPlayerController::ShiftPressed);
+	AuraInputComponent->BindAction(ShiftAction, ETriggerEvent::Completed, this, &AAuraPlayerController::ShiftReleased);
 	AuraInputComponent->BindAbilityAction(InputConfig, this, &ThisClass::AbilityInputPressed,&ThisClass::AbilityInputReleased,&ThisClass::AbilityInputHeld);
 
 }
