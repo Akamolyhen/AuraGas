@@ -25,6 +25,13 @@ enum class EEffectRemovalPolicy
 	DoNotRemove
 };
 
+UENUM(BlueprintType)
+enum class EEffectCollisionType
+{
+	OnlyCharacter,
+	AllActor
+};
+
 USTRUCT(BlueprintType)
 struct FAppliesGamePlayEffect
 {
@@ -49,7 +56,7 @@ struct FAppliesGamePlayEffect
 	EEffectApplicationPolicy InfinityEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	EEffectRemovalPolicy InfinityEffectRemovalPolicy = EEffectRemovalPolicy::RemoveOnEndOverlap;	
+	EEffectRemovalPolicy InfinityEffectRemovalPolicy = EEffectRemovalPolicy::RemoveOnEndOverlap;
 };
 UCLASS()
 class AURA_API AAuraEffectActor : public AActor
@@ -76,6 +83,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	TArray<FAppliesGamePlayEffect> AppliesGamePlayEffects;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	EEffectCollisionType EffectCollisionPolicy = EEffectCollisionType::OnlyCharacter;	
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	bool B_DestroyOnEffectRemoval = false;
