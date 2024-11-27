@@ -30,12 +30,12 @@ end
 
 function M:OnHealthChanged(newHealth)
     self.Health = newHealth
-    self:SetProgressBarPercent(UE.UKismetMathLibrary.SafeDivide(self.Health, self.MaxHealth))
+    self:UpdateBar(self.Health, self.MaxHealth)
 end
 
 function M:OnMaxHealthChanged(newMaxHealth)
     self.MaxHealth = newMaxHealth
-    self:SetProgressBarPercent(UE.UKismetMathLibrary.SafeDivide(self.Health, self.MaxHealth))
+    self:UpdateBar(self.Health, self.MaxHealth)
 end
 
 

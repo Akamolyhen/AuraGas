@@ -30,11 +30,12 @@ end
 
 function M:OnManaChanged(newMana)
     self.Mana = newMana
-    self:SetProgressBarPercent(UE.UKismetMathLibrary.SafeDivide(self.Mana, self.MaxMana))
+    self:UpdateBar(self.Mana, self.MaxMana)
 end
 
 function M:OnMaxManaChanged(newMaxMana)
     self.MaxMana = newMaxMana
-    self:SetProgressBarPercent(UE.UKismetMathLibrary.SafeDivide(self.Mana, self.MaxMana))
+    self:UpdateBar(self.Mana, self.MaxMana)
 end
+
 return M
