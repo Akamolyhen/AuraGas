@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "AuraProjectile.generated.h"
 
+class UNiagaraSystem;
 class USphereComponent;
 class UProjectileMovementComponent;
 UCLASS()
@@ -26,4 +27,7 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> Sphere;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UNiagaraSystem> ImpactEffect;
 };
