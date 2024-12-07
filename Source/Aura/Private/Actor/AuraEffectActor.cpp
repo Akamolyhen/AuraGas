@@ -4,7 +4,6 @@
 #include "Actor/AuraEffectActor.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
-#include "Character/AuraCharacter.h"
 
 // Sets default values
 AAuraEffectActor::AAuraEffectActor()
@@ -49,13 +48,7 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGam
 
 void AAuraEffectActor::OnOverlap(AActor* TargetActor)
 {
-	if (EffectCollisionPolicy == EEffectCollisionType::OnlyCharacter)
-	{
-		if (!Cast<AAuraCharacter>(TargetActor))
-		{
-			return; 
-		}
-	}
+
 	for(auto& GameplayEffect : AppliesGamePlayEffects)
 	{
 		switch (GameplayEffect.InstantEffectApplicationPolicy)

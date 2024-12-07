@@ -25,12 +25,6 @@ enum class EEffectRemovalPolicy
 	DoNotRemove
 };
 
-UENUM(BlueprintType)
-enum class EEffectCollisionType
-{
-	OnlyCharacter,
-	AllActor
-};
 
 USTRUCT(BlueprintType)
 struct FAppliesGamePlayEffect
@@ -84,9 +78,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	TArray<FAppliesGamePlayEffect> AppliesGamePlayEffects;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	EEffectCollisionType EffectCollisionPolicy = EEffectCollisionType::OnlyCharacter;	
-	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	bool B_DestroyOnEffectRemoval = false;
 
