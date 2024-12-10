@@ -22,10 +22,8 @@ local M = UnLua.Class()
 --end
 
 function M:WidgetControllerSet()
-    ---@type BP_OverlayWidgetController_C
-    local WidgetController = self.WidgetController
-    WidgetController.OnHealthChanged:Add(self,self.OnHealthChanged)
-    WidgetController.OnMaxHealthChanged:Add(self,self.OnMaxHealthChanged)
+    self.WidgetController.OnHealthChanged:Add(self,self.OnHealthChanged)
+    self.WidgetController.OnMaxHealthChanged:Add(self,self.OnMaxHealthChanged)
 end
 
 function M:OnHealthChanged(newHealth)

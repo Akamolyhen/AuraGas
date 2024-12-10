@@ -13,12 +13,7 @@ class UGameplayEffect;
 class UAttributeSet;
 class UAbilitySystemComponent;
 
-/**
- * IAbilitySystemInterface  这个主要处理 Server && Client 直接的AttributeSet 以及 AbilitySystemComponent 的链接与传输
- * 理解 AvaterActor 和  OwnerActor
- * 
- * 
- */
+/** IAbilitySystemInterface  这个主要处理 Server && Client 直接的AttributeSet 以及 AbilitySystemComponent 的链接与传输理解 AvaterActor 和  OwnerActor.*/
 UCLASS(Abstract)
 class AURA_API AAuraCharacterBase : public ACharacter, public IAbilitySystemInterface, public ICombatInterface
 {
