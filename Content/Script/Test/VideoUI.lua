@@ -34,11 +34,14 @@ function M:OpenFile()
     print("当前打开路径"..self.FilePath:GetText())
     if self.mediaPlayer:OpenFile(self.FilePath:GetText()) then
         print("play")
+        print(self:TransformTimespan(self.mediaPlayer:GetTime()))
     else
         print("not play")     
     end
 end
---function M:Tick(MyGeometry, InDeltaTime)
---end
+
+function M:Tick(MyGeometry, InDeltaTime)
+    print(self:TransformTimespan(self.mediaPlayer:GetDuration()))
+end
 
 return M
