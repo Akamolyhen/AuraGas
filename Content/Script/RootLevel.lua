@@ -14,8 +14,6 @@ local M = UnLua.Class()
 -- function M:UserConstructionScript()
 -- end
 
-function M:ReceiveBeginPlay()
-end
 
 function M:InitMainHud()
     local mainHud = UE.UWidgetBlueprintLibrary.Create(self, R.C.LoadClass.MainHud)

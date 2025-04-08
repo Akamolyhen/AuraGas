@@ -46,6 +46,12 @@ int32 AAuraEnemy::GetPlayerLevel()
 	return Level;
 }
 
+void AAuraEnemy::Die()
+{
+	SetLifeSpan(LifeSpan);
+	Super::Die();
+}
+
 void AAuraEnemy::HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
 {
 	bHitReacting = NewCount > 0;
@@ -84,6 +90,9 @@ void AAuraEnemy::BeginPlay()
 				this,
 				&AAuraEnemy::HitReactTagChanged
 		);
+		bool bHasTag = AbilitySystemComponent->HasMatchingGameplayTag(FAuraGameplayTags::Get().Effects_HitReact);
+		UE_LOG(LogTemp, Log, TEXT("Effects_HitReact tag registered. Current state: %s"), bHasTag ? TEXT("Present") : TEXT("Absent"));
+
 		OnMaxHealthChanged.Broadcast(AuraAS->GetMaxHealth());
 		OnHealthChanged.Broadcast(AuraAS->GetHealth());
 	}
