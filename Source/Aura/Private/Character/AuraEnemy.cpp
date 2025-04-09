@@ -83,15 +83,31 @@ void AAuraEnemy::BeginPlay()
 		{
 			OnMaxHealthChanged.Broadcast(Data.NewValue);
 		});
-		
-		AbilitySystemComponent->RegisterGameplayTagEvent(
-			FAuraGameplayTags::Get().Effects_HitReact,
-			EGameplayTagEventType::NewOrRemoved).AddUObject(
+		if (!IsValid(AbilitySystemComponent))
+		{
+			UE_LOG(LogTemp, Error, TEXT("AbilitySystemComponent is not valid!"));
+			return;
+		}
+		const FGameplayTag HitReactTag = FAuraGameplayTags::Get().Effects_HitReact;
+		if (!HitReactTag.IsValid())
+		{
+			UE_LOG(LogTemp, Error, TEXT("Effects_HitReact tag is invalid!"));
+			return;
+		}
+	     FDelegateHandle DelegateHandle = AbilitySystemComponent->RegisterGameplayTagEvent(
+			FAuraGameplayTags::Get().Effects_HitReact).AddUObject(
 				this,
 				&AAuraEnemy::HitReactTagChanged
 		);
-		bool bHasTag = AbilitySystemComponent->HasMatchingGameplayTag(FAuraGameplayTags::Get().Effects_HitReact);
-		UE_LOG(LogTemp, Log, TEXT("Effects_HitReact tag registered. Current state: %s"), bHasTag ? TEXT("Present") : TEXT("Absent"));
+
+		if (DelegateHandle.IsValid())
+		{
+			UE_LOG(LogTemp, Log, TEXT("Successfully registered GameplayTagEvent for Effects_HitReact!"));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Failed to register GameplayTagEvent for Effects_HitReact!"));
+		}
 
 		OnMaxHealthChanged.Broadcast(AuraAS->GetMaxHealth());
 		OnHealthChanged.Broadcast(AuraAS->GetHealth());
