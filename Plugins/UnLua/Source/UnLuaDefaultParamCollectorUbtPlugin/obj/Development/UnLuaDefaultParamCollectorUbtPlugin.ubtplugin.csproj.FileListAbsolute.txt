@@ -49,7 +49,7 @@ D:\WorkSpace\aurarpg\Binaries\DotNET\UnrealBuildTool\Plugins\UnLuaDefaultParamCo
 D:\WorkSpace\aurarpg\Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\obj\Development\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj.AssemblyReference.cache
 D:\WorkSpace\aurarpg\Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\obj\Development\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.GeneratedMSBuildEditorConfig.editorconfig
 D:\WorkSpace\aurarpg\Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\obj\Development\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj.CoreCompileInputs.cache
-D:\WorkSpace\aurarpg\Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\obj\Development\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj.CopyComplete
 D:\WorkSpace\aurarpg\Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\obj\Development\UnLuaDefaultParamCollectorUbtPlugin.dll
 D:\WorkSpace\aurarpg\Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\obj\Development\refint\UnLuaDefaultParamCollectorUbtPlugin.dll
 D:\WorkSpace\aurarpg\Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\obj\Development\UnLuaDefaultParamCollectorUbtPlugin.pdb
+D:\WorkSpace\AuraRPG\Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\obj\Development\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj.CopyComplete

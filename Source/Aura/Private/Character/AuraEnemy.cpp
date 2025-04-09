@@ -54,8 +54,10 @@ void AAuraEnemy::Die()
 
 void AAuraEnemy::HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
 {
+	// UE_LOG(LogTemp, Display, TEXT("AAuraEnemy::HitReactTagChanged NewCount: %d"), NewCount);
 	bHitReacting = NewCount > 0;
 	GetCharacterMovement()->MaxWalkSpeed = bHitReacting ? 0.f : BaseWalkSpeed;
+	UE_LOG(LogTemp, Display, TEXT("AAuraEnemy::MaxWalkSpeed: %f"), GetCharacterMovement()->MaxWalkSpeed);
 }
 
 void AAuraEnemy::BeginPlay()
@@ -95,7 +97,8 @@ void AAuraEnemy::BeginPlay()
 			return;
 		}
 	     FDelegateHandle DelegateHandle = AbilitySystemComponent->RegisterGameplayTagEvent(
-			FAuraGameplayTags::Get().Effects_HitReact).AddUObject(
+			FAuraGameplayTags::Get().Effects_HitReact,
+			EGameplayTagEventType::AnyCountChange).AddUObject(
 				this,
 				&AAuraEnemy::HitReactTagChanged
 		);
