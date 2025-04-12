@@ -1,6 +1,6 @@
 package.cpath = package.cpath .. ';C:/Users/aka_w/AppData/Roaming/JetBrains/Rider2024.1/plugins/EmmyLua/debugger/emmy/windows/x64/?.dll'
 local dbg = require('emmy_core')
-dbg.tcpConnect('localhost', 18340)
+dbg.tcpConnect('localhost', 9966)
 
 ------------------------------------------
 --- HotFix - 运行时HotFix支持 参考云风方案
