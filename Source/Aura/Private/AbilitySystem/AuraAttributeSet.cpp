@@ -9,6 +9,7 @@
 #include "GameplayEffectExtension.h"
 #include "Interaction/CombatInterface.h"
 #include "Net/UnrealNetwork.h"
+#include <functional>
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
@@ -103,8 +104,35 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			}
 			else
 			{
+				std::function<void(const FGameplayTag&)> EndActiveAbilityWithTag = [this,Properties](const FGameplayTag& AbilityTag)-> void
+				{
+					if (Properties.TargetAsc)
+					{
+						// 获取所有正在激活的技能实例
+						TArray<FGameplayAbilitySpec*> ActiveAbilitySpecs;
+						Properties.TargetAsc->GetActivatableGameplayAbilitySpecsByAllMatchingTags(FGameplayTagContainer(AbilityTag), ActiveAbilitySpecs, false);
+
+						for (const FGameplayAbilitySpec* Spec : ActiveAbilitySpecs)
+						{
+							if (Spec && Spec->IsActive())
+							{
+								if (UGameplayAbility* ActiveAbility = Spec->GetPrimaryInstance())
+								{
+									// 获取技能激活信息
+									const FGameplayAbilityActivationInfo ActivationInfo = Spec->ActivationInfo;
+									// 获取技能所有者信息
+									const FGameplayAbilityActorInfo* ActorInfo = GetActorInfo();
+
+									// 结束技能并同步到网络
+									ActiveAbility->CancelAbility(Spec->Handle, ActorInfo, ActivationInfo, true);
+								}
+							}
+						}
+					}
+				};
 				FGameplayTagContainer TagContainer;
 				TagContainer.AddTag(FAuraGameplayTags::Get().Effects_HitReact);
+				EndActiveAbilityWithTag(FAuraGameplayTags::Get().Effects_HitReact);
 				Properties.TargetAsc->TryActivateAbilitiesByTag(TagContainer);
 			}
 		}
