@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.4",
+	"FriendlyName": "MySQLConnectorTools",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "smallpig1997",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/6ebb7b2c54de47aeb37705d515e8ceb6",
+	"SupportURL": "",
+	"EngineVersion": "5.3.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "MySQLConnectorTools",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			],
+			"PlatformDenyList": [
+				"Mac",
+				"Linux"
+			]
+		}
+	]
+}
