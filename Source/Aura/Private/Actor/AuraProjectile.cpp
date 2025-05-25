@@ -45,14 +45,14 @@ void AAuraProjectile::BeginPlay()
 	LoopingSoundComponent = UGameplayStatics::SpawnSoundAttached(LoopingSound, GetRootComponent());
 
 	// Test ConfirmBox
-	if (const UWorld* World = GetWorld())
-	{
-		APlayerController* PlayerController = World->GetFirstPlayerController();
-		AAuraHUD* AuraHud = Cast<AAuraHUD>(PlayerController->GetHUD());
-		UComfirmBox* ConfirmBox = AuraHud->ShowConfirmBox("Construct From Cpp");
-		ConfirmBox->EventDispatcher_OnConfirmEvent.AddDynamic(this, &AAuraProjectile::OnConfirmBoxTextFunc);
-		ConfirmBox->EventDispatcher_OnCancelEvent.AddDynamic(this, &AAuraProjectile::OnConfirmBoxTextFunc);
-	}
+	// if (const UWorld* World = GetWorld())
+	// {
+	// 	APlayerController* PlayerController = World->GetFirstPlayerController();
+	// 	AAuraHUD* AuraHud = Cast<AAuraHUD>(PlayerController->GetHUD());
+	// 	UComfirmBox* ConfirmBox = AuraHud->ShowConfirmBox("Construct From Cpp");
+	// 	ConfirmBox->EventDispatcher_OnConfirmEvent.AddDynamic(this, &AAuraProjectile::OnConfirmBoxTextFunc);
+	// 	ConfirmBox->EventDispatcher_OnCancelEvent.AddDynamic(this, &AAuraProjectile::OnConfirmBoxTextFunc);
+	// }
 }
 
 void AAuraProjectile::OnConfirmBoxTextFunc()
