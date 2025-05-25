@@ -1,4 +1,4 @@
-package.cpath = package.cpath .. ';C:/Users/aka_w/AppData/Roaming/JetBrains/Rider2024.1/plugins/EmmyLua/debugger/emmy/windows/x64/?.dll'
+package.cpath = package.cpath .. ';C:/Users/aka_w/AppData/Roaming/JetBrains/Rider2025.1/plugins/EmmyLua/debugger/emmy/windows/x64/?.dll'
 local dbg = require('emmy_core')
 dbg.tcpConnect('localhost', 9966)
 
@@ -17,7 +17,7 @@ local HOT_RELOAD_MARK = "HOT_RELOAD"
 local loaded_modules = setmetatable({}, { __mode = "v" })
 local ignore_modules = {}
 local config = {
-    debug = true,
+    debug = false,
     script_root_path = UE.UUnLuaFunctionLibrary.GetScriptRootPath(),
     ignore_modules = ignore_modules
 }

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+#include "UI/Widget/ComfirmBox.h"
 #include "AuraHUD.generated.h"
 
 class UAttributeMenuWidgetController;
@@ -26,6 +27,13 @@ public:
 	UAttributeMenuWidgetController* GetAttributeMenuWidgetController(const FWidgetControllerParams& WcParams);
 
 	void InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* Asc, UAttributeSet* As);
+
+	UFUNCTION(BlueprintCallable)
+	UComfirmBox* ShowConfirmBox(const FString& Content);
+
+	UFUNCTION(BlueprintCallable)
+	void RemoveConfirmBox();
+	
 protected:
 	virtual void BeginPlay() override;
 private:
@@ -46,4 +54,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UAttributeMenuWidgetController> AttributeWidgetControllerClass;
+
+	UPROPERTY()
+	TObjectPtr<UComfirmBox> ConfirmBox;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> ConfirmBoxClass;
 };

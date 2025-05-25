@@ -44,6 +44,58 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyst
 	Widget->AddToViewport();
 }
 
+
+UComfirmBox* AAuraHUD::ShowConfirmBox(const FString& Content)
+{
+	if (ConfirmBox)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("ConfirmBox is already initialized"));
+		return nullptr;
+	}
+	checkf(ConfirmBoxClass, TEXT("ConfirmBox Class Uninitialized, please fill out BP_AuraHud"));
+	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), ConfirmBoxClass);
+	ConfirmBox = Cast<UComfirmBox>(Widget);
+	if (ConfirmBox)
+	{
+    
+		// 设置输入模式为UI独占
+		APlayerController* PC = GetOwningPlayerController();
+		if (PC)
+		{
+			// 创建UI独占输入模式实例
+			FInputModeUIOnly InputMode;
+   //  
+			// // 可选：指定焦点控件（如确认框的根Widget）
+			InputMode.SetWidgetToFocus(ConfirmBox->TakeWidget());
+    
+			// 配置鼠标行为
+			InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock); // 允许鼠标自由移动
+    
+			// 应用输入模式
+			PC->SetInputMode(InputMode);
+		}
+		ConfirmBox->SetContent(Content);
+		ConfirmBox->AddToViewport(999);
+	}
+	return ConfirmBox;
+}
+
+void AAuraHUD::RemoveConfirmBox()
+{
+	if (ConfirmBox)
+	{
+		ConfirmBox->RemoveFromParent();
+		APlayerController* PC = GetOwningPlayerController();
+		if (PC)
+		{
+			PC->SetInputMode(FInputModeGameAndUI());
+		}
+		ConfirmBox = nullptr;
+	}	
+}
+
+
+
 void AAuraHUD::BeginPlay()
 {
 	Super::BeginPlay();
