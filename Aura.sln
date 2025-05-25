@@ -72,7 +72,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLocLocalization.Automation
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptGeneratorUbtPlugin.ubtplugin", "..\..\UEEngine\UE_5.3\Engine\Plugins\ScriptPlugin\Source\ScriptGeneratorUbtPlugin\ScriptGeneratorUbtPlugin.ubtplugin.csproj", "{F030CFA6-09D8-3488-8D3E-C28116F18723}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnLuaDefaultParamCollectorUbtPlugin.ubtplugin", "Plugins\UnLua-2.3.6\Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj", "{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnLuaDefaultParamCollectorUbtPlugin.ubtplugin", "Plugins\UnLua\Source\UnLuaDefaultParamCollectorUbtPlugin\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj", "{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.AspNet", "..\..\UEEngine\UE_5.3\Engine\Source\Programs\Shared\EpicGames.AspNet\EpicGames.AspNet.csproj", "{D2ED3BDD-0EBE-37B0-AE99-753642DC13EE}"
 EndProject
@@ -386,16 +386,16 @@ Global
 		{F030CFA6-09D8-3488-8D3E-C28116F18723}.Development|Win64.Build.0 = Development|Any CPU
 		{F030CFA6-09D8-3488-8D3E-C28116F18723}.Shipping|Win64.ActiveCfg = Development|Any CPU
 		{F030CFA6-09D8-3488-8D3E-C28116F18723}.Shipping|Win64.Build.0 = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.DebugGame Editor|Win64.ActiveCfg = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.DebugGame Editor|Win64.Build.0 = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.DebugGame|Win64.ActiveCfg = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.DebugGame|Win64.Build.0 = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.Development Editor|Win64.ActiveCfg = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.Development Editor|Win64.Build.0 = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.Development|Win64.ActiveCfg = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.Development|Win64.Build.0 = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.Shipping|Win64.ActiveCfg = Development|Any CPU
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9}.Shipping|Win64.Build.0 = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.DebugGame Editor|Win64.ActiveCfg = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.DebugGame Editor|Win64.Build.0 = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.DebugGame|Win64.ActiveCfg = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.DebugGame|Win64.Build.0 = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.Development Editor|Win64.ActiveCfg = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.Development Editor|Win64.Build.0 = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.Development|Win64.ActiveCfg = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.Development|Win64.Build.0 = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.Shipping|Win64.ActiveCfg = Development|Any CPU
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E}.Shipping|Win64.Build.0 = Development|Any CPU
 		{D2ED3BDD-0EBE-37B0-AE99-753642DC13EE}.DebugGame Editor|Win64.ActiveCfg = Development|Any CPU
 		{D2ED3BDD-0EBE-37B0-AE99-753642DC13EE}.DebugGame Editor|Win64.Build.0 = Development|Any CPU
 		{D2ED3BDD-0EBE-37B0-AE99-753642DC13EE}.DebugGame|Win64.ActiveCfg = Development|Any CPU
@@ -644,7 +644,7 @@ Global
 		{A37E8B86-0692-3383-A5C9-9E0C71252C8E} = {233774A8-CC9D-3FA9-86D1-90573E92B704}
 		{D00F0A75-DDBB-30B3-A8FF-F03E64C133D0} = {DE1F8B53-6C02-3C13-9101-A7C8D96F3FF6}
 		{A6C25F74-E2DF-392C-9C27-8ED8A64821D5} = {DE1F8B53-6C02-3C13-9101-A7C8D96F3FF6}
-		{042CA8E7-CFD0-3BF0-9262-8EEC5D0697C9} = {A6C25F74-E2DF-392C-9C27-8ED8A64821D5}
+		{2D81F29A-E7C5-3B35-BBD7-58F987DE7E4E} = {A6C25F74-E2DF-392C-9C27-8ED8A64821D5}
 		{7DBCEB3C-AB9A-3606-8B73-148D4903D035} = {A338B9E2-A559-34BE-A46D-F789DD488FAD}
 		{2B119BBD-35B5-3A6A-984E-38F8481F8A6C} = {A338B9E2-A559-34BE-A46D-F789DD488FAD}
 		{0BFBE63A-B98A-3411-8EEB-8918FEC737B3} = {A338B9E2-A559-34BE-A46D-F789DD488FAD}

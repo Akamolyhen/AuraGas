@@ -35,7 +35,10 @@ protected:
 	virtual void NativeConstruct() override;
 	virtual void NativeDestruct() override;
 
-	UPROPERTY(meta = (BindWidget))
+	UFUNCTION(BlueprintCallable)
+	void CallCancelEvent();
+
+	UPROPERTY(EditAnywhere, meta = (BindWidgetOptional))
 	UImage* ConfirmIcon;
 
 	UPROPERTY(meta = (BindWidget))

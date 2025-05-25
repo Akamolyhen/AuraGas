@@ -25,7 +25,7 @@ function M:OnCloseButtonClicked()
     ---@type BP_AuraHUD_C
     local AuraHud = playerController:GetHUD()
     ---@type WBP_ConfirmBox_C
-    local ConfirmBox = AuraHud:ShowConfirmBox("Are you sure you want to close the attribute menu?")
+    local ConfirmBox = AuraHud:ShowConfirmBox("Are you sure you want to close the attribute menu?",UE.EConfirmBox_Type.ConfirmBox_Type_Normal)
     ConfirmBox.EventDispatcher_OnConfirmEvent:Add(self,self.CloseMenu)
     ConfirmBox.EventDispatcher_OnCancelEvent:Add(self,self.CloseConfirmBox)
 end

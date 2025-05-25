@@ -6,6 +6,28 @@
 #include "UI/WidgetController/AttributeMenuWidgetController.h"
 #include "UI/WidgetController/OverlayWidgetController.h"
 
+AAuraHUD::AAuraHUD()
+{
+	TSubclassOf<UUserWidget> ConfirmBoxClassDefault =
+		StaticLoadClass(UUserWidget::StaticClass(), nullptr, 
+		  TEXT("/Game/Blueprints/UI/Overlay/SubWidgets/WBP_ConfirmBox.WBP_ConfirmBox_C"));
+	TSubclassOf<UUserWidget> ConfirmBoxClassNormal =
+		StaticLoadClass(UUserWidget::StaticClass(), nullptr, 
+		TEXT("/Game/Blueprints/UI/Overlay/SubWidgets/WBP_ConfirmBox1.WBP_ConfirmBox1_C"));
+	// 检查类是否成功加载
+	if (!ConfirmBoxClassDefault)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to load ConfirmBoxClassDefault!"));
+	}
+	
+	if (!ConfirmBoxClassNormal)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to load ConfirmBoxClassNormal!"));
+	}
+	ConfirmBoxClassArray.Emplace(ConfirmBoxClassDefault);
+	ConfirmBoxClassArray.Emplace(ConfirmBoxClassNormal);
+}
+
 UOverlayWidgetController* AAuraHUD::GetOverlayWidgetController(const FWidgetControllerParams& WcParams)
 {
 	if (OverlayWidgetController == nullptr)
@@ -44,15 +66,15 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyst
 	Widget->AddToViewport();
 }
 
-
-UComfirmBox* AAuraHUD::ShowConfirmBox(const FString& Content)
+UComfirmBox* AAuraHUD::ShowConfirmBox(const FString& Content, EConfirmBox_Type Type)
 {
 	if (ConfirmBox)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("ConfirmBox is already initialized"));
 		return nullptr;
 	}
-	checkf(ConfirmBoxClass, TEXT("ConfirmBox Class Uninitialized, please fill out BP_AuraHud"));
+	checkf(!ConfirmBoxClassArray.IsEmpty(), TEXT("ConfirmBox Class Uninitialized, please fill out BP_AuraHud"));
+	const TSubclassOf<UUserWidget> ConfirmBoxClass = ConfirmBoxClassArray[static_cast<uint8>(Type)];
 	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), ConfirmBoxClass);
 	ConfirmBox = Cast<UComfirmBox>(Widget);
 	if (ConfirmBox)
@@ -64,7 +86,7 @@ UComfirmBox* AAuraHUD::ShowConfirmBox(const FString& Content)
 		{
 			// 创建UI独占输入模式实例
 			FInputModeUIOnly InputMode;
-   //  
+			//  
 			// // 可选：指定焦点控件（如确认框的根Widget）
 			InputMode.SetWidgetToFocus(ConfirmBox->TakeWidget());
     

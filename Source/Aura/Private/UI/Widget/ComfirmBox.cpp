@@ -25,6 +25,11 @@ void UComfirmBox::NativeConstruct()
 	}
 	if (ConfirmIcon && IconTexture.IsValid())
 	{
+		ConfirmIcon->SetBrushFromTexture(IconTexture.Get());
+	}
+	else if (ConfirmIcon && IconTexture.IsPending())
+	{
+		// 同步加载（仅在蓝图显式调用时使用）
 		if (UTexture2D* Icon = IconTexture.LoadSynchronous())
 		{
 			ConfirmIcon->SetBrushFromTexture(Icon);
@@ -38,6 +43,11 @@ void UComfirmBox::NativeDestruct()
 	EventDispatcher_OnConfirmEvent.Clear();
 	EventDispatcher_OnCancelEvent.Clear();
 	Super::NativeDestruct();
+}
+
+void UComfirmBox::CallCancelEvent()
+{
+	EventDispatcher_OnCancelEvent.Broadcast();
 }
 
 void UComfirmBox::OnConfirmClicked()
