@@ -10,8 +10,8 @@
 #include "ComfirmBox.generated.h"
 
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnConfirmEvent);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCancelEvent);
+DECLARE_DYNAMIC_DELEGATE(FOnConfirmEvent);
+DECLARE_DYNAMIC_DELEGATE(FOnCancelEvent);
 /**
  * 
  */
@@ -21,24 +21,25 @@ class AURA_API UComfirmBox : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(BlueprintAssignable)
 	FOnConfirmEvent EventDispatcher_OnConfirmEvent;
 
-	UPROPERTY(BlueprintAssignable)
 	FOnCancelEvent EventDispatcher_OnCancelEvent;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Icon")
-	TSoftObjectPtr<UTexture2D> IconTexture;
-
+	UFUNCTION(BlueprintCallable)
 	void SetContent(const FString& Content);
+
 protected:
 	virtual void NativeConstruct() override;
 	virtual void NativeDestruct() override;
 
+
+	
 	UFUNCTION(BlueprintCallable)
 	void CallCancelEvent();
 
-	UPROPERTY(EditAnywhere, meta = (BindWidgetOptional))
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UTexture2D*> IconsArray;
+	
+	UPROPERTY(meta = (BindWidgetOptional))
 	UImage* ConfirmIcon;
 
 	UPROPERTY(meta = (BindWidget))

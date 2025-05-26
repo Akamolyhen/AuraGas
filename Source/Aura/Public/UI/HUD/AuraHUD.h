@@ -16,12 +16,6 @@ class UAuraUserWidget;
 /**
  * 
  */
-UENUM(BlueprintType)
-enum class EConfirmBox_Type : uint8
-{
-	ConfirmBox_Type_Default,
-	ConfirmBox_Type_Normal
-};
 
 
 
@@ -30,18 +24,12 @@ class AURA_API AAuraHUD : public AHUD
 {
 	GENERATED_BODY()
 public:
-	AAuraHUD();
 	UOverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParams& WcParams);
 	UAttributeMenuWidgetController* GetAttributeMenuWidgetController(const FWidgetControllerParams& WcParams);
 
 	void InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* Asc, UAttributeSet* As);
-
-	UFUNCTION(BlueprintCallable)
-	UComfirmBox* ShowConfirmBox(const FString& Content, EConfirmBox_Type Type = EConfirmBox_Type::ConfirmBox_Type_Default);
-
-	UFUNCTION(BlueprintCallable)
-	void RemoveConfirmBox();
-	
+	UFUNCTION(BlueprintCallable, Category = "UI")
+	void SetMenuOpen(bool MenuOpen);
 protected:
 	virtual void BeginPlay() override;
 private:
@@ -67,4 +55,11 @@ private:
 	TObjectPtr<UComfirmBox> ConfirmBox;
 	UPROPERTY(VisibleAnywhere, Category="ConfirmBox")
     TArray< TSubclassOf<UUserWidget>> ConfirmBoxClassArray;
+
+    
+	// 切换到 UI 模式
+	void SetInputMode_UIOnly() const;
+    
+	// 切换到游戏模式
+	void SetInputMode_GameAndUI() const;
 };

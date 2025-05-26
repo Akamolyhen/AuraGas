@@ -4,16 +4,18 @@
 #include "UI/Widget/ComfirmBox.h"
 
 #include "Components/CanvasPanel.h"
+#include "UI/HUD/AuraHUD.h"
 
 
 void UComfirmBox::SetContent(const FString& Content)
 {
+	ConfirmIcon->SetBrushFromTexture(IconsArray[0]);
 	ConfirmContent->SetText(FText::FromString(Content));
+	ConfirmContent->SetAutoWrapText(true);
 }
 
 void UComfirmBox::NativeConstruct()
 {
-	UE_LOG(LogTemp, Warning, TEXT("UComfirmBox::NativeConstruct"));
 	Super::NativeConstruct();
 	if (ConfirmButton && !ConfirmButton->OnClicked.IsBound())
 	{
@@ -23,23 +25,10 @@ void UComfirmBox::NativeConstruct()
 	{
 		CancelButton->OnClicked.AddDynamic(this, &UComfirmBox::OnCancelClicked);
 	}
-	if (ConfirmIcon && IconTexture.IsValid())
-	{
-		ConfirmIcon->SetBrushFromTexture(IconTexture.Get());
-	}
-	else if (ConfirmIcon && IconTexture.IsPending())
-	{
-		// 同步加载（仅在蓝图显式调用时使用）
-		if (UTexture2D* Icon = IconTexture.LoadSynchronous())
-		{
-			ConfirmIcon->SetBrushFromTexture(Icon);
-		}
-	}
 }
 
 void UComfirmBox::NativeDestruct()
 {
-	UE_LOG(LogTemp, Warning, TEXT("UComfirmBox::NativeDestruct"));
 	EventDispatcher_OnConfirmEvent.Clear();
 	EventDispatcher_OnCancelEvent.Clear();
 	Super::NativeDestruct();
@@ -47,15 +36,18 @@ void UComfirmBox::NativeDestruct()
 
 void UComfirmBox::CallCancelEvent()
 {
-	EventDispatcher_OnCancelEvent.Broadcast();
+	RemoveFromParent();
+	EventDispatcher_OnCancelEvent.ExecuteIfBound();
 }
 
 void UComfirmBox::OnConfirmClicked()
 {
-	EventDispatcher_OnConfirmEvent.Broadcast();
+	RemoveFromParent();
+	EventDispatcher_OnConfirmEvent.ExecuteIfBound();
 }
 
 void UComfirmBox::OnCancelClicked()
 {
-	EventDispatcher_OnCancelEvent.Broadcast();
+	RemoveFromParent();
+	EventDispatcher_OnCancelEvent.ExecuteIfBound();
 }

@@ -51,6 +51,4 @@ private:
 	UPROPERTY()
 	TObjectPtr<UAudioComponent> LoopingSoundComponent;
 
-	UFUNCTION()
-	void OnConfirmBoxTextFunc();
 };

@@ -6,27 +6,6 @@
 #include "UI/WidgetController/AttributeMenuWidgetController.h"
 #include "UI/WidgetController/OverlayWidgetController.h"
 
-AAuraHUD::AAuraHUD()
-{
-	TSubclassOf<UUserWidget> ConfirmBoxClassDefault =
-		StaticLoadClass(UUserWidget::StaticClass(), nullptr, 
-		  TEXT("/Game/Blueprints/UI/Overlay/SubWidgets/WBP_ConfirmBox.WBP_ConfirmBox_C"));
-	TSubclassOf<UUserWidget> ConfirmBoxClassNormal =
-		StaticLoadClass(UUserWidget::StaticClass(), nullptr, 
-		TEXT("/Game/Blueprints/UI/Overlay/SubWidgets/WBP_ConfirmBox1.WBP_ConfirmBox1_C"));
-	// 检查类是否成功加载
-	if (!ConfirmBoxClassDefault)
-	{
-		UE_LOG(LogTemp, Error, TEXT("Failed to load ConfirmBoxClassDefault!"));
-	}
-	
-	if (!ConfirmBoxClassNormal)
-	{
-		UE_LOG(LogTemp, Error, TEXT("Failed to load ConfirmBoxClassNormal!"));
-	}
-	ConfirmBoxClassArray.Emplace(ConfirmBoxClassDefault);
-	ConfirmBoxClassArray.Emplace(ConfirmBoxClassNormal);
-}
 
 UOverlayWidgetController* AAuraHUD::GetOverlayWidgetController(const FWidgetControllerParams& WcParams)
 {
@@ -66,59 +45,35 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyst
 	Widget->AddToViewport();
 }
 
-UComfirmBox* AAuraHUD::ShowConfirmBox(const FString& Content, EConfirmBox_Type Type)
+void AAuraHUD::SetMenuOpen(bool MenuOpen)
 {
-	if (ConfirmBox)
+	if (MenuOpen)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("ConfirmBox is already initialized"));
-		return nullptr;
+		SetInputMode_UIOnly();
 	}
-	checkf(!ConfirmBoxClassArray.IsEmpty(), TEXT("ConfirmBox Class Uninitialized, please fill out BP_AuraHud"));
-	const TSubclassOf<UUserWidget> ConfirmBoxClass = ConfirmBoxClassArray[static_cast<uint8>(Type)];
-	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), ConfirmBoxClass);
-	ConfirmBox = Cast<UComfirmBox>(Widget);
-	if (ConfirmBox)
+	else
 	{
-    
-		// 设置输入模式为UI独占
-		APlayerController* PC = GetOwningPlayerController();
-		if (PC)
-		{
-			// 创建UI独占输入模式实例
-			FInputModeUIOnly InputMode;
-			//  
-			// // 可选：指定焦点控件（如确认框的根Widget）
-			InputMode.SetWidgetToFocus(ConfirmBox->TakeWidget());
-    
-			// 配置鼠标行为
-			InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock); // 允许鼠标自由移动
-    
-			// 应用输入模式
-			PC->SetInputMode(InputMode);
-		}
-		ConfirmBox->SetContent(Content);
-		ConfirmBox->AddToViewport(999);
+		SetInputMode_GameAndUI();
 	}
-	return ConfirmBox;
 }
-
-void AAuraHUD::RemoveConfirmBox()
-{
-	if (ConfirmBox)
-	{
-		ConfirmBox->RemoveFromParent();
-		APlayerController* PC = GetOwningPlayerController();
-		if (PC)
-		{
-			PC->SetInputMode(FInputModeGameAndUI());
-		}
-		ConfirmBox = nullptr;
-	}	
-}
-
 
 
 void AAuraHUD::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void AAuraHUD::SetInputMode_UIOnly() const
+{
+	// 创建UI独占输入模式实例
+	FInputModeUIOnly InputMode;
+	// 配置鼠标行为
+	InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock); // 允许鼠标自由移动
+	// 应用输入模式
+	GetWorld()->GetFirstPlayerController()->SetInputMode(InputMode);
+}
+
+void AAuraHUD::SetInputMode_GameAndUI() const
+{
+	GetOwningPlayerController()->SetInputMode(FInputModeGameAndUI());
 }

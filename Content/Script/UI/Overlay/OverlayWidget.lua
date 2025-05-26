@@ -50,9 +50,6 @@ function M:OnAttributeBtnClicked()
      AttributeMenu:AddToViewport()
      AttributeMenu:SetPositionInViewport(UE.FVector2D(50,25),true)
      AttributeMenu.OnAttributeMenuClosed:Add(self,self.ReEnableAttributeBtn)
-    -----@type TestUI_C
-    --local TestUI = UE.UWidgetBlueprintLibrary.Create(self, UE.UClass.Load("/Game/Blueprints/UI/Overlay/TestUI/TestUI.TestUI_C"))
-    --TestUI:AddToViewport()
 end
 
 function M:ReEnableAttributeBtn()

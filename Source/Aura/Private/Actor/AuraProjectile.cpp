@@ -12,6 +12,7 @@
 #include "Aura/Aura.h"
 #include "Components/AudioComponent.h"
 #include "UI/HUD/AuraHUD.h"
+#include "UI/Widget/UIFrameLibrary.h"
 
 // Sets default values
 AAuraProjectile::AAuraProjectile()
@@ -45,25 +46,9 @@ void AAuraProjectile::BeginPlay()
 	LoopingSoundComponent = UGameplayStatics::SpawnSoundAttached(LoopingSound, GetRootComponent());
 
 	// Test ConfirmBox
-	// if (const UWorld* World = GetWorld())
-	// {
-	// 	APlayerController* PlayerController = World->GetFirstPlayerController();
-	// 	AAuraHUD* AuraHud = Cast<AAuraHUD>(PlayerController->GetHUD());
-	// 	UComfirmBox* ConfirmBox = AuraHud->ShowConfirmBox("Construct From Cpp");
-	// 	ConfirmBox->EventDispatcher_OnConfirmEvent.AddDynamic(this, &AAuraProjectile::OnConfirmBoxTextFunc);
-	// 	ConfirmBox->EventDispatcher_OnCancelEvent.AddDynamic(this, &AAuraProjectile::OnConfirmBoxTextFunc);
-	// }
+	// UUIFrameLibrary::CreateMessageBox(GetWorld(), "Test ConfirmBox", EConfirmBox_Type::ConfirmBox_Type_Normal);
 }
 
-void AAuraProjectile::OnConfirmBoxTextFunc()
-{
-	if (const UWorld* World = GetWorld())
-	{
-		APlayerController* PlayerController = World->GetFirstPlayerController();
-		AAuraHUD* AuraHud = Cast<AAuraHUD>(PlayerController->GetHUD());
-		AuraHud->RemoveConfirmBox();
-	}
-}
 
 void AAuraProjectile::Destroyed()
 {
