@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
-#include "UI/Widget/ConfirmBox.h"
+#include "UI/Widget/ComfirmBox.h"
 #include "AuraHUD.generated.h"
 
 class UAttributeMenuWidgetController;
@@ -52,7 +52,7 @@ private:
 	TSubclassOf<UAttributeMenuWidgetController> AttributeWidgetControllerClass;
 
 	UPROPERTY()
-	TObjectPtr<UConfirmBox> ConfirmBox;
+	TObjectPtr<UComfirmBox> ConfirmBox;
 	UPROPERTY(VisibleAnywhere, Category="ConfirmBox")
     TArray< TSubclassOf<UUserWidget>> ConfirmBoxClassArray;
 

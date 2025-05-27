@@ -5,12 +5,12 @@
 
 #include "AI/NavigationSystemBase.h"
 #include "UI/HUD/AuraHUD.h"
-#include "UI/Widget/ConfirmBox.h"
+#include "UI/Widget/ComfirmBox.h"
 
 
 
-TArray<TSubclassOf<UConfirmBox>> UUIFrameLibrary::ConfirmBoxTypes;
-UConfirmBox* UUIFrameLibrary::CreateMessageBox(UObject* WorldContextObject, FOnConfirmEvent Event_Confirm,
+TArray<TSubclassOf<UComfirmBox>> UUIFrameLibrary::ConfirmBoxTypes;
+UComfirmBox* UUIFrameLibrary::CreateMessageBox(UObject* WorldContextObject, FOnConfirmEvent Event_Confirm,
 	FOnCancelEvent Event_Cancel, const FString& Content, EConfirmBox_Type Type)
 {
 	if (!WorldContextObject)
@@ -22,9 +22,9 @@ UConfirmBox* UUIFrameLibrary::CreateMessageBox(UObject* WorldContextObject, FOnC
 	{
 		InitConfirmBoxTypes();
 	}
-	const TSubclassOf<UConfirmBox> ConfirmBoxClass = ConfirmBoxTypes[static_cast<uint8>(Type)];
+	const TSubclassOf<UComfirmBox> ConfirmBoxClass = ConfirmBoxTypes[static_cast<uint8>(Type)];
 	UWorld* World = WorldContextObject->GetWorld();
-	UConfirmBox* MessageBox = CreateWidget<UConfirmBox>(World, ConfirmBoxClass);
+	UComfirmBox* MessageBox = CreateWidget<UComfirmBox>(World, ConfirmBoxClass);
 	if (World)
 	{
 		MessageBox->EventDispatcher_OnConfirmEvent = Event_Confirm;
@@ -38,10 +38,10 @@ UConfirmBox* UUIFrameLibrary::CreateMessageBox(UObject* WorldContextObject, FOnC
 void UUIFrameLibrary::InitConfirmBoxTypes()
 {
 	TSubclassOf<UUserWidget> ConfirmBoxClassDefault =
-	StaticLoadClass(UConfirmBox::StaticClass(), nullptr, 
+	StaticLoadClass(UComfirmBox::StaticClass(), nullptr, 
 	  TEXT("/Game/Blueprints/UI/Overlay/SubWidgets/WBP_ConfirmBox.WBP_ConfirmBox_C"));
 	TSubclassOf<UUserWidget> ConfirmBoxClassNormal =
-		StaticLoadClass(UConfirmBox::StaticClass(), nullptr, 
+		StaticLoadClass(UComfirmBox::StaticClass(), nullptr, 
 		TEXT("/Game/Blueprints/UI/Overlay/SubWidgets/WBP_ConfirmBox1.WBP_ConfirmBox1_C"));
 	// 检查类是否成功加载
 	if (!ConfirmBoxClassDefault)

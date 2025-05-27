@@ -7,7 +7,7 @@
 #include "Components/Button.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
-#include "ConfirmBox.generated.h"
+#include "ComfirmBox.generated.h"
 
 
 DECLARE_DYNAMIC_DELEGATE(FOnConfirmEvent);
@@ -16,7 +16,7 @@ DECLARE_DYNAMIC_DELEGATE(FOnCancelEvent);
  * 
  */
 UCLASS()
-class AURA_API UConfirmBox : public UUserWidget
+class AURA_API UComfirmBox : public UUserWidget
 {
 	GENERATED_BODY()
 
