@@ -1,52 +1,52 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "UI/Widget/ComfirmBox.h"
+#include "UI/Widget/ConfirmBox.h"
 
 #include "Components/CanvasPanel.h"
 #include "UI/HUD/AuraHUD.h"
 
 
-void UComfirmBox::SetContent(const FString& Content)
+void UConfirmBox::SetContent(const FString& Content)
 {
 	ConfirmIcon->SetBrushFromTexture(IconsArray[0]);
 	ConfirmContent->SetText(FText::FromString(Content));
 	ConfirmContent->SetAutoWrapText(true);
 }
 
-void UComfirmBox::NativeConstruct()
+void UConfirmBox::NativeConstruct()
 {
 	Super::NativeConstruct();
 	if (ConfirmButton && !ConfirmButton->OnClicked.IsBound())
 	{
-		ConfirmButton->OnClicked.AddDynamic(this, &UComfirmBox::OnConfirmClicked);
+		ConfirmButton->OnClicked.AddDynamic(this, &UConfirmBox::OnConfirmClicked);
 	}
 	if (CancelButton && !CancelButton->OnClicked.IsBound())
 	{
-		CancelButton->OnClicked.AddDynamic(this, &UComfirmBox::OnCancelClicked);
+		CancelButton->OnClicked.AddDynamic(this, &UConfirmBox::OnCancelClicked);
 	}
 }
 
-void UComfirmBox::NativeDestruct()
+void UConfirmBox::NativeDestruct()
 {
 	EventDispatcher_OnConfirmEvent.Clear();
 	EventDispatcher_OnCancelEvent.Clear();
 	Super::NativeDestruct();
 }
 
-void UComfirmBox::CallCancelEvent()
+void UConfirmBox::CallCancelEvent()
 {
 	RemoveFromParent();
 	EventDispatcher_OnCancelEvent.ExecuteIfBound();
 }
 
-void UComfirmBox::OnConfirmClicked()
+void UConfirmBox::OnConfirmClicked()
 {
 	RemoveFromParent();
 	EventDispatcher_OnConfirmEvent.ExecuteIfBound();
 }
 
-void UComfirmBox::OnCancelClicked()
+void UConfirmBox::OnCancelClicked()
 {
 	RemoveFromParent();
 	EventDispatcher_OnCancelEvent.ExecuteIfBound();
