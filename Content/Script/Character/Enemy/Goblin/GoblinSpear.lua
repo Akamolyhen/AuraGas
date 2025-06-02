@@ -21,9 +21,9 @@ local M = UnLua.Class()
 -- function M:ReceiveEndPlay()
 -- end
 
--- function M:ReceiveTick(DeltaSeconds)
--- end
-
+--function M:ReceiveTick(DeltaSeconds)
+--end
+--
 -- function M:ReceiveAnyDamage(Damage, DamageType, InstigatedBy, DamageCauser)
 -- end
 

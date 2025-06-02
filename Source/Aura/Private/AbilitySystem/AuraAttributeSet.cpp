@@ -11,6 +11,9 @@
 #include "Net/UnrealNetwork.h"
 #include <functional>
 
+#include "Kismet/GameplayStatics.h"
+#include "Player/AuraPlayerController.h"
+
 UAuraAttributeSet::UAuraAttributeSet()
 {
 	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
@@ -71,7 +74,19 @@ void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, 
 	{
 		NewValue = FMath::Clamp(NewValue,0.f,GetMaxMana());
 	}
- }
+}
+
+void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, float Damage)
+{
+	if (Props.SourceCharacter != Props.TargetCharacter)
+	{
+		if (AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(
+			UGameplayStatics::GetPlayerController(Props.SourceCharacter, 0)))
+		{
+			AuraPlayerController->ShowDamageNumber(Damage,Props.TargetCharacter);
+		}
+	}	
+}
 
 void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
 {
@@ -93,6 +108,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		SetIncomingDamage(0.f);
 		if (LocalIncomingDamage > 0)
 		{
+			ShowFloatingText(Properties, LocalIncomingDamage);
 			const float NewHealth = GetHealth() - LocalIncomingDamage;
 			SetHealth(FMath::Clamp(NewHealth,0.f,GetMaxHealth()));
 			if (const bool bFatal = NewHealth <= 0.f)

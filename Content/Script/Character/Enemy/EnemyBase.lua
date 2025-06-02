@@ -6,8 +6,9 @@
 -- @DATE ${date} ${time}
 --
 
----@type BP_Goblin_Spear_C
+---@type BP_EnemyBase_C
 local M = UnLua.Class()
+
 
 -- function M:Initialize(Initializer)
 -- end
