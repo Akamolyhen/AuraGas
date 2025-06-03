@@ -15,14 +15,14 @@ end
 --function M:PreConstruct(IsDesignTime)
 --end
 
-function M:Construct()
-    self.Btn_CloseAttribute.Button.OnClicked:Add(self,self.OnCloseButtonClicked)
-    self:SetWidgetController(UE.UAuraAbilitySystemLibrary.GetAttributeMenuWidgetController(self))
-    local playerController = UE.UGameplayStatics.GetPlayerController(self,0)
-    ---@type BP_AuraHUD_C
-    local AuraHud = playerController:GetHUD()
-    AuraHud:SetMenuOpen(true)
-end
+--function M:Construct()
+--    self.Btn_CloseAttribute.Button.OnClicked:Add(self,self.OnCloseButtonClicked)
+--    self:SetWidgetController(UE.UAuraAbilitySystemLibrary.GetAttributeMenuWidgetController(self))
+--    local playerController = UE.UGameplayStatics.GetPlayerController(self,0)
+--    ---@type BP_AuraHUD_C
+--    local AuraHud = playerController:GetHUD()
+--    AuraHud:SetMenuOpen(true)
+--end
 
 function M:OnCloseButtonClicked()
     ---@type WBP_ConfirmBox_C

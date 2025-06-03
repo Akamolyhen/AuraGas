@@ -32,6 +32,9 @@ end
 
 function M:TestClick()
     UE.UKismetSystemLibrary.PrintString(this, "TestClick")
+    ---@type BP_AttributeMenuWidgetController_C
+    local widgetController = UE.UAuraAbilitySystemLibrary.GetAttributeMenuWidgetController(self)
+    widgetController:BroadcastInitialValues()
 end
 
 --function M:Tick(MyGeometry, InDeltaTime)

@@ -29,6 +29,13 @@ function M:OnAttributeInfoBroad(Info)
     end
 end
 
+function M:Destruct()
+    ---@type BP_AttributeMenuWidgetController_C
+    local widgetController = UE.UAuraAbilitySystemLibrary.GetAttributeMenuWidgetController(self)
+    if not widgetController then return end
+    widgetController.AttributeInfoDelegate:Clear()
+end
+
 --function M:Tick(MyGeometry, InDeltaTime)
 --end
 
