@@ -16,6 +16,7 @@ void UAttributeMenuWidgetController::BroadcastInitialValues()
 	{
 		BroadcastAttributeInfo(Pair.Key,Pair.Value());
 	}
+	AttributeInfoBroadCastFinish.Broadcast();
 }
 
 void UAttributeMenuWidgetController::BindCallbacksToDependencies()
