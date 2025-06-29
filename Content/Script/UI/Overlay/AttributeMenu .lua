@@ -15,20 +15,14 @@ end
 --function M:PreConstruct(IsDesignTime)
 --end
 
---function M:Construct()
---    self.Btn_CloseAttribute.Button.OnClicked:Add(self,self.OnCloseButtonClicked)
---    self:SetWidgetController(UE.UAuraAbilitySystemLibrary.GetAttributeMenuWidgetController(self))
---    local playerController = UE.UGameplayStatics.GetPlayerController(self,0)
---    ---@type BP_AuraHUD_C
---    local AuraHud = playerController:GetHUD()
---    AuraHud:SetMenuOpen(true)
---end
-
-function M:OnCloseButtonClicked()
-    ---@type WBP_ConfirmBox_C
-    UE.UUIFrameLibrary.CreateMessageBox(self, function() self:CloseMenu() end, nil, "Are you sure you want to close the attribute menu?", UE.EConfirmBox_Type.ConfirmBox_Type_Normal)
+function M:Construct()
+    self.Btn_CloseAttribute.Button.OnClicked:Add(self,self.CloseMenu)
+    self:SetWidgetController(UE.UAuraAbilitySystemLibrary.GetAttributeMenuWidgetController(self))
+    local playerController = UE.UGameplayStatics.GetPlayerController(self,0)
+    ---@type BP_AuraHUD_C
+    local AuraHud = playerController:GetHUD()
+    AuraHud:SetMenuOpen(true)
 end
-
 
 function M:CloseMenu()
     self:RemoveFromParent()
@@ -46,7 +40,9 @@ function M:Destruct()
     AuraHud:SetMenuOpen(false)
 end
 
+--对Attribute数据进行初始化
 function M:WidgetControllerSet()
+    self:BindInitAttributes()
     ---@type BP_AttributeMenuWidgetController_C
     local widgetController = self.WidgetController
     widgetController:BroadcastInitialValues()
