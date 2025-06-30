@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "AbilitySystem/ModMagCalc/MMC_MaxHealth.h"
+#include "AbilitySystem/ModMagCalc/Mmc_MaxHealth.h"
 
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "Interaction/CombatInterface.h"
 
-UMMC_MaxHealth::UMMC_MaxHealth()
+UMmc_MaxHealth::UMmc_MaxHealth()
 {
 	VigorDef.AttributeToCapture = UAuraAttributeSet::GetVigorAttribute();
 	VigorDef.AttributeSource = EGameplayEffectAttributeCaptureSource::Target;
@@ -15,7 +15,7 @@ UMMC_MaxHealth::UMMC_MaxHealth()
 	RelevantAttributesToCapture.Add(VigorDef);
 }
 
-float UMMC_MaxHealth::CalculateBaseMagnitude_Implementation(const FGameplayEffectSpec& Spec) const
+float UMmc_MaxHealth::CalculateBaseMagnitude_Implementation(const FGameplayEffectSpec& Spec) const
 {
 	// Gather tags from source and Target
 	const FGameplayTagContainer* SourceTags = Spec.CapturedTargetTags.GetAggregatedTags();
