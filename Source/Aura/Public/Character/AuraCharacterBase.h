@@ -75,10 +75,12 @@ protected:
 	TObjectPtr<UMaterialInstance> DissolveMaterialInstance;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
+	TObjectPtr<UAnimMontage> HitReactMontage;
 private:
 	UPROPERTY(EditAnywhere, Category = "Abilities")
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
 
-	UPROPERTY(EditAnywhere, Category = "Combat")
-	TObjectPtr<UAnimMontage> HitReactMontage;
+
 };
