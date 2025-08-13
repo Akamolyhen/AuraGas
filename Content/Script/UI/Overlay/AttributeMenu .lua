@@ -22,6 +22,7 @@ function M:Construct()
     ---@type BP_AuraHUD_C
     local AuraHud = playerController:GetHUD()
     AuraHud:SetMenuOpen(true)
+    --UE.UUIFrameLibrary.CreateMessageBox(self,function() end, function() end,"是否关闭属性菜单")
 end
 
 function M:CloseMenu()

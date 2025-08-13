@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/Widget/ComfirmBox.h"
+#include "UI/Widget/ConfirmBox.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "UIFrameLibrary.generated.h"
 
@@ -23,10 +23,10 @@ class AURA_API UUIFrameLibrary : public UBlueprintFunctionLibrary
 	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintCallable, Category = "UI", meta = (WorldContext = "WorldContextObject"))
-	static UComfirmBox* CreateMessageBox(UObject* WorldContextObject, FOnConfirmEvent Event_Confirm, FOnCancelEvent Event_Cancel, const FString& Content,
+	static UConfirmBox* CreateMessageBox(UObject* WorldContextObject, FOnConfirmEvent Event_Confirm, FOnCancelEvent Event_Cancel, const FString& Content,
 	                                                    EConfirmBox_Type Type =
 		                                                    EConfirmBox_Type::ConfirmBox_Type_Default);
 
 	static void InitConfirmBoxTypes();
-	static TArray<TSubclassOf<UComfirmBox>> ConfirmBoxTypes;
+	static TArray<TSubclassOf<UConfirmBox>> ConfirmBoxTypes;
 };
