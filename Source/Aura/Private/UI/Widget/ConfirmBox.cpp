@@ -3,6 +3,7 @@
 
 #include "UI/Widget/ConfirmBox.h"
 
+#include "EasyPopupFunctionLibrary.h"
 #include "Components/CanvasPanel.h"
 #include "UI/HUD/AuraHUD.h"
 
@@ -36,18 +37,21 @@ void UConfirmBox::NativeDestruct()
 
 void UConfirmBox::CallCancelEvent()
 {
+	UEasyPopupFunctionLibrary::SetUserInput(this,0,EUserInput::OnAborted);
 	RemoveFromParent();
 	EventDispatcher_OnCancelEvent.ExecuteIfBound();
 }
 
 void UConfirmBox::OnConfirmClicked()
 {
+	UEasyPopupFunctionLibrary::SetUserInput(this,1,EUserInput::OnUserResponse);
 	RemoveFromParent();
 	EventDispatcher_OnConfirmEvent.ExecuteIfBound();
 }
 
 void UConfirmBox::OnCancelClicked()
 {
+	UEasyPopupFunctionLibrary::SetUserInput(this,0,EUserInput::OnUserResponse);
 	RemoveFromParent();
 	EventDispatcher_OnCancelEvent.ExecuteIfBound();
 }

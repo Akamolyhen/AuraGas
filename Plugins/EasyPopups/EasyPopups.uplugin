@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "EasyPopups",
+	"Description": "Easy Popups Plugin allows you to easily manage user/player input for popup dialogs and other user input dependent stuff in blueprints.",
+	"Category": "Other",
+	"CreatedBy": "MashMashu Studio",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/fd058f53d44a455280e0f30ff237247e",
+	"SupportURL": "",
+	"EngineVersion": "5.3.0",
+	"CanContainContent": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "EasyPopups",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Mac",
+				"IOS",
+				"Linux",
+				"Android",
+				"Win64"
+			]
+		}
+	]
+}

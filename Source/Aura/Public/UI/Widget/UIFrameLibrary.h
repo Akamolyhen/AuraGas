@@ -7,10 +7,8 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "UIFrameLibrary.generated.h"
 
+enum class EUserInput : uint8;
 
-/**
- * 
- */
 UENUM(BlueprintType)
 enum class EConfirmBox_Type : uint8
 {
@@ -27,6 +25,15 @@ public:
 	                                                    EConfirmBox_Type Type =
 		                                                    EConfirmBox_Type::ConfirmBox_Type_Default);
 
+
+	UFUNCTION(BlueprintCallable, Category = "EasyPopups|CreateMessageBox",
+		meta = (ExpandEnumAsExecs = "UserInput", Latent, WorldContext = "WorldContextObject", LatentInfo = "LatentInfo"
+		))
+	static UConfirmBox* CreateWaitMessageBox(UObject* WorldContextObject, const FString& Content, int32& Input,
+	                                         FLatentActionInfo LatentInfo, EUserInput& UserInput,
+	                                         EConfirmBox_Type Type =
+		                                         EConfirmBox_Type::ConfirmBox_Type_Default);
+	
 	static void InitConfirmBoxTypes();
 	static TArray<TSubclassOf<UConfirmBox>> ConfirmBoxTypes;
 };

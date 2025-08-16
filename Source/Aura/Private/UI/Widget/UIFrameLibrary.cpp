@@ -3,8 +3,7 @@
 
 #include "UI/Widget/UIFrameLibrary.h"
 
-#include "AI/NavigationSystemBase.h"
-#include "UI/HUD/AuraHUD.h"
+#include "EasyPopupFunctionLibrary.h"
 #include "UI/Widget/ConfirmBox.h"
 
 
@@ -34,6 +33,31 @@ UConfirmBox* UUIFrameLibrary::CreateMessageBox(UObject* WorldContextObject, FOnC
 	}
 	return MessageBox;
 }
+
+UConfirmBox* UUIFrameLibrary::CreateWaitMessageBox(UObject* WorldContextObject, const FString& Content, int32& Input,
+	FLatentActionInfo LatentInfo, EUserInput& UserInput, EConfirmBox_Type Type)
+{
+	if (!WorldContextObject)
+	{
+		UE_LOG(LogTemp, Error, TEXT("WorldContextObject is nullptr!"));
+		return nullptr;
+	}
+	if (ConfirmBoxTypes.IsEmpty())
+	{
+		InitConfirmBoxTypes();
+	}
+	const TSubclassOf<UConfirmBox> ConfirmBoxClass = ConfirmBoxTypes[static_cast<uint8>(Type)];
+	UWorld* World = WorldContextObject->GetWorld();
+	UConfirmBox* MessageBox = CreateWidget<UConfirmBox>(World, ConfirmBoxClass);
+	if (World)
+	{
+		MessageBox->SetContent(Content);
+		MessageBox->AddToViewport(99);
+	}
+	UEasyPopupFunctionLibrary::WaitForUserInput(WorldContextObject,MessageBox,Input,LatentInfo,UserInput);
+	return MessageBox;
+}
+
 
 void UUIFrameLibrary::InitConfirmBoxTypes()
 {
