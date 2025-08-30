@@ -3,6 +3,8 @@
 
 #include "Character/AuraCharacter.h"
 
+#include <iostream>
+
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -21,6 +23,27 @@ AAuraCharacter::AAuraCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
+	std::cout << "Hello World!" << std::endl;
+
+	// 检查当前编译环境是否符合条件
+	#if defined(_MSC_VER)
+		std::cout << "检测到MSVC编译器，_MSC_VER = " << _MSC_VER << std::endl;
+	
+	#if defined(__clang__)
+		std::cout << "注意：当前使用的是Clang模拟MSVC模式" << std::endl;
+	#else
+		std::cout << "当前使用的是原生MSVC模式" << std::endl;
+	
+	#if _MSC_VER < 1941
+		std::cout << "当前环境不满足要求：MSVC版本低于14.41" << std::endl;
+	#else
+		std::cout << "当前环境满足要求：MSVC版本 >= 14.41" << std::endl;
+	#endif
+	#endif
+	#else
+		std::cout << "未检测到MSVC编译器" << std::endl;
+	#endif
+	
 }
 
 void AAuraCharacter::PossessedBy(AController* NewController)

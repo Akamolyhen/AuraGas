@@ -26,6 +26,7 @@ function M:StartAsyncTask()
                 print("确认")
             end
         end
+        coroutine.yield()
         --Util:ScreenPrint("Hello World")
         --self:WaitSeconds(3)
         --Util:ScreenPrint("Hello World 3")
